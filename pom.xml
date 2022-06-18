@@ -14,7 +14,6 @@
     <name>Authorization</name>
     <description>Authorization</description>
     <properties>
-        <java.version>17</java.version>
         <org.projectlombok.version>1.18.12</org.projectlombok.version>
     </properties>
     <dependencies>
