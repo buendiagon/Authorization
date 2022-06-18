@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,7 +16,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(schema = "public", name = "USERS")
 public class User implements Serializable {
-    @Serial
     private static final long serialVersionUID = -1424432944414355371L;
 
     @Id
