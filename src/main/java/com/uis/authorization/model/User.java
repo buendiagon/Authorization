@@ -26,7 +26,6 @@ public class User implements Serializable {
     @Column(name = "USERNAME", nullable = false)
     private String username;
 
-    @JsonIgnore
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
@@ -44,9 +43,9 @@ public class User implements Serializable {
 
     @Column(name = "CREATED")
     @Temporal(TemporalType.DATE)
-    private Date created;
+    private Date created = new Date();
 
     @Column(name = "UPDATED")
     @Temporal(TemporalType.DATE)
-    private Date updated;
+    private Date updated = new Date();
 }
