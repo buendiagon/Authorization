@@ -10,7 +10,7 @@ import java.io.Serializable;
  **/
 @Getter
 @Setter
-public class SignInDTO implements Serializable {
+public class LoginDTO implements Serializable {
     private static final long serialVersionUID = 3796908352572727437L;
 
     private String username;
