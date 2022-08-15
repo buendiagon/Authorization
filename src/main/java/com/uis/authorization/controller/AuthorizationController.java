@@ -1,9 +1,9 @@
 package com.uis.authorization.controller;
 
-import com.uis.authorization.dto.SignInDTO;
-import com.uis.authorization.repository.IUserRepository;
+import com.uis.authorization.dto.JwtDTO;
+import com.uis.authorization.dto.LoginDTO;
+import com.uis.authorization.service.interfaces.IAuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,19 +16,19 @@ import javax.validation.Valid;
  * @author Daniel Adrian Gonzalez Buendia
  **/
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/public/api")
 public class AuthorizationController {
 
-    private IUserRepository userRepository;
+    private IAuthorizationService authorizationService;
 
-    @PostMapping("/signIn")
-    public ResponseEntity<Boolean> signIn(@Valid @RequestBody SignInDTO signInDTO) {
-        return new ResponseEntity<>(this.userRepository.findTopByusernameAndPassword(signInDTO.getUsername(), signInDTO.getPassword()) != null, HttpStatus.OK);
+    @PostMapping("/login")
+    public ResponseEntity<JwtDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
+        return ResponseEntity.ok(this.authorizationService.login(loginDTO));
     }
 
     @Autowired
-    public void setUserRepository(IUserRepository userRepository) {
-        this.userRepository = userRepository;
+    public void setAuthorizationService(IAuthorizationService authorizationService) {
+        this.authorizationService = authorizationService;
     }
 
 }
