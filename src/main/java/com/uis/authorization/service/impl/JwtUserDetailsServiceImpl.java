@@ -1,5 +1,6 @@
 package com.uis.authorization.service.impl;
 
+import com.uis.authorization.exception.DataNotFoundException;
 import com.uis.authorization.model.User;
 import com.uis.authorization.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        this.user = this.userRepository.findTopByUsername(username).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        this.user = this.userRepository.findTopByUsername(username).orElseThrow(() -> new DataNotFoundException("User not found"));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 

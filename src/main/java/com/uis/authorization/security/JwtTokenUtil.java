@@ -1,12 +1,12 @@
 package com.uis.authorization.security;
 
+import com.uis.authorization.exception.TechnicalException;
 import com.uis.authorization.model.AccessControl;
 import com.uis.authorization.repository.IAccessControlRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,6 +46,14 @@ public class JwtTokenUtil implements Serializable {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
+    //get token without bearer
+    public String getTokenWithoutBearer(String token) {
+        if(token.startsWith("Bearer ")) {
+            return token.substring(7);
+        }
+        throw new TechnicalException("Token not found");
+    }
+
     //generate token for user
     public String generateToken(UserDetails userDetails, Long idUser) {
         Map<String, Object> claims = new HashMap<>();
@@ -80,7 +88,7 @@ public class JwtTokenUtil implements Serializable {
         final String username = getUsernameFromToken(token);
         Claims claims = getAllClaimsFromToken(token);
         AccessControl accessControl = accessControlRepository.findDistinctTopByIdUser(Long.parseLong(claims.get("idUser").toString()))
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+                .orElseThrow(() -> new TechnicalException("User not found"));
         return (username.equals(user.getUsername()) && this.passwordEncoder().matches(token, accessControl.getToken()));
     }
 

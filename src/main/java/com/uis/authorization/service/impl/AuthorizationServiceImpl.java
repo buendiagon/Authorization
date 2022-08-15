@@ -1,5 +1,6 @@
 package com.uis.authorization.service.impl;
 
+import com.uis.authorization.exception.TransactionException;
 import com.uis.authorization.security.JwtTokenUtil;
 import com.uis.authorization.dto.JwtDTO;
 import com.uis.authorization.dto.LoginDTO;
@@ -28,7 +29,7 @@ public class AuthorizationServiceImpl  implements IAuthorizationService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
         } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid username or password");
+            throw new TransactionException("Invalid username or password");
         }
         final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(loginDTO.getUsername());
         String token = jwtTokenUtil.generateToken(userDetails, jwtUserDetailsService.user.getId());
