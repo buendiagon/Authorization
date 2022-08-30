@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,11 +56,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .cors().configurationSource(request -> {
                     CorsConfiguration cors = new CorsConfiguration();
-                    cors.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:80",
+                    cors.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://127.0.0.1:80",
                             "https://front-ksocial.herokuapp.com", "https://social-kchat.herokuapp.com",
                             "https://social-publications.herokuapp.com"));
-                    cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
-                    cors.setAllowedHeaders(List.of("Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
+                    cors.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
+                    cors.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
                             "Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin",
                             "Cache-Control", "Content-Type", "Authorization", "Accept"));
                     return cors;
