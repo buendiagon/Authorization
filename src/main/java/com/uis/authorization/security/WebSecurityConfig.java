@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 /**
  * @author Daniel Adrian Gonzalez Buendia
@@ -48,7 +51,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity
+                .cors().configurationSource(request -> {
+                    CorsConfiguration cors = new CorsConfiguration();
+                    cors.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:80",
+                            "https://front-ksocial.herokuapp.com", "https://social-kchat.herokuapp.com",
+                            "https://social-publications.herokuapp.com"));
+                    cors.setAllowedMethods(List.of("*"));
+                    cors.setAllowedHeaders(List.of("*"));
+                    return cors;
+                })
+                .and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/public/api/**").permitAll()
                 .anyRequest().authenticated().and()
