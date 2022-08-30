@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
@@ -57,8 +58,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     cors.setAllowedOrigins(List.of("http://localhost:4200", "http://127.0.0.1:80",
                             "https://front-ksocial.herokuapp.com", "https://social-kchat.herokuapp.com",
                             "https://social-publications.herokuapp.com"));
-                    cors.setAllowedMethods(List.of("*"));
-                    cors.setAllowedHeaders(List.of("*"));
+                    cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
+                    cors.setAllowedHeaders(List.of("Access-Control-Allow-Headers", "Access-Control-Allow-Origin",
+                            "Access-Control-Request-Method", "Access-Control-Request-Headers", "Origin",
+                            "Cache-Control", "Content-Type", "Authorization", "Accept"));
                     return cors;
                 })
                 .and().csrf().disable()
