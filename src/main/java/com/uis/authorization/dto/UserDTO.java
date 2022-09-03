@@ -26,4 +26,5 @@ public class UserDTO implements Serializable {
     private String names;
     @NotNull
     private String lastNames;
+    private String userPhotoUrl;
 }
