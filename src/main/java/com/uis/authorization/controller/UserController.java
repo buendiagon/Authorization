@@ -23,7 +23,7 @@ public class UserController {
         UserDTO userDTO = this.userService.getUserDataByToken(token);
         return ResponseEntity.ok(userDTO);
     }
-
+    @PutMapping("/profile")
     public ResponseEntity<Boolean> addPhotoUser(@RequestHeader("Authorization") String token, String photo_url){
         return ResponseEntity.ok(this.userService.addPhotoUserByToken(token,photo_url));
     }

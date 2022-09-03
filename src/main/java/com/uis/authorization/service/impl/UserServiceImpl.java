@@ -96,7 +96,7 @@ public class UserServiceImpl implements IUserService {
         }
         return UserMapper.INSTANCE.toUserDTO(user);
     }
-    @PutMapping("/Profile")
+
     @Override
     public Boolean addPhotoUserByToken(String token, String photo_url) {
         String usernamee = null;
