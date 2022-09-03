@@ -1,6 +1,7 @@
 package com.uis.authorization.service.interfaces;
 
 import com.uis.authorization.dto.UserDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface IUserService {
     List<UserDTO> getFriendsByToken(String token);
 
     UserDTO addFriend(String token, String username);
+
+    Boolean addPhotoUserByToken(String token,String photo_url);
 }

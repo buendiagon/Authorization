@@ -48,4 +48,7 @@ public class User implements Serializable {
     @Column(name = "UPDATED")
     @Temporal(TemporalType.DATE)
     private Date updated = new Date();
+
+    @Column(name="PHOTO_USER")
+    private String userPhotoUrl;
 }

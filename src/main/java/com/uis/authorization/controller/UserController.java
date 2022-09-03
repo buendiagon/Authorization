@@ -24,6 +24,10 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+    public ResponseEntity<Boolean> addPhotoUser(@RequestHeader("Authorization") String token, String photo_url){
+        return ResponseEntity.ok(this.userService.addPhotoUserByToken(token,photo_url));
+    }
+
     @GetMapping("/friends")
     public ResponseEntity<List<UserDTO>> getFriends(@RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(this.userService.getFriendsByToken(token));

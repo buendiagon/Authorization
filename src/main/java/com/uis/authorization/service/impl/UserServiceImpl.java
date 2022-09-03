@@ -96,6 +96,26 @@ public class UserServiceImpl implements IUserService {
         return UserMapper.INSTANCE.toUserDTO(user);
     }
 
+    @Override
+    public Boolean addPhotoUserByToken(String token, String photo_url) {
+        String usernamee = null;
+        if (token != null && token.startsWith("Bearer ")) {
+            String jwtToken = token.substring(7);
+            try {
+                usernamee = jwtTokenUtil.getUsernameFromToken(jwtToken);
+            } catch (Exception e) {
+                System.out.println("JwtRequestFilter: " + e.getMessage());
+            }
+        } else {
+            System.out.println("JwtRequestFilter: No token found in request header");
+        }
+        User user = this.userRepository.findTopByUsername(usernamee)
+                .orElseThrow((() -> new DataNotFoundException("User not found")));
+        user.setUserPhotoUrl(photo_url);
+        this.userRepository.save(user);
+        return true;
+    }
+
     @Autowired
     public void setUserRepository(IUserRepository userRepository) {
         this.userRepository = userRepository;
