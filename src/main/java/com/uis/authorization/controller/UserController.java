@@ -28,8 +28,8 @@ public class UserController {
         return ResponseEntity.ok(this.userService.addPhotoUserByToken(token,photo_url));
     }
     @PutMapping("/profileDetails")
-    public ResponseEntity<Boolean> editNameLastname(@RequestParam Long idUser,@RequestParam String names,@RequestParam String lastLames){
-        return ResponseEntity.ok(this.userService.editNameLastname(idUser,names,lastLames));
+    public ResponseEntity<Boolean> editNameLastname(@RequestParam Long idUser,@RequestParam String names,@RequestParam String lastNames){
+        return ResponseEntity.ok(this.userService.editNameLastname(idUser,names,lastNames));
     }
 
     @GetMapping("/friends")
