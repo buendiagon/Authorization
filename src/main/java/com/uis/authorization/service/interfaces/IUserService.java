@@ -22,5 +22,5 @@ public interface IUserService {
 
     Boolean addPhotoUserByToken(String token,String photo_url);
 
-    Boolean editNameLastname(String token, String names,String lastNames);
+    Boolean editNameLastname(Long idUser, String names,String lastNames);
 }

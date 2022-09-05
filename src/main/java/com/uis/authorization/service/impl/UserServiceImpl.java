@@ -118,19 +118,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Boolean editNameLastname(String token, String names,String lastNames) {
-        String usernamee = null;
-        if (token != null && token.startsWith("Bearer ")) {
-            String jwtToken = token.substring(7);
-            try {
-                usernamee = jwtTokenUtil.getUsernameFromToken(jwtToken);
-            } catch (Exception e) {
-                System.out.println("JwtRequestFilter: " + e.getMessage());
-            }
-        } else {
-            System.out.println("JwtRequestFilter: No token found in request header");
-        }
-        User user = this.userRepository.findTopByUsername(usernamee)
+    public Boolean editNameLastname(Long idUser, String names,String lastNames) {
+        User user = this.userRepository.findById(idUser)
                 .orElseThrow((() -> new DataNotFoundException("User not found")));
         user.setNames(names);
         user.setLastNames(lastNames);
