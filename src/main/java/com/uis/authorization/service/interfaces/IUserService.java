@@ -21,4 +21,6 @@ public interface IUserService {
     UserDTO addFriend(String token, String username);
 
     Boolean addPhotoUserByToken(String token,String photo_url);
+
+    Boolean editNameLastname(String token, String names,String lastNames);
 }
