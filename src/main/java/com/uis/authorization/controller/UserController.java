@@ -27,6 +27,10 @@ public class UserController {
     public ResponseEntity<Boolean> addPhotoUser(@RequestHeader("Authorization") String token,@RequestParam String photo_url){
         return ResponseEntity.ok(this.userService.addPhotoUserByToken(token,photo_url));
     }
+    @PutMapping("/profileDetails")
+    public ResponseEntity<Boolean> editName(@RequestHeader("Authorization") String token,@RequestParam String names,@RequestParam String lastLames){
+        return ResponseEntity.ok(this.userService.editNameLastname(token,names,lastLames));
+    }
 
     @GetMapping("/friends")
     public ResponseEntity<List<UserDTO>> getFriends(@RequestHeader("Authorization") String token) {
