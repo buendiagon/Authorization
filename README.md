@@ -1,2 +1,2 @@
 # Authorization
-K-pop Application authorization
+Authorization for Campus link
