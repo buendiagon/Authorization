@@ -21,14 +21,6 @@ public class UserController {
         UserDTO userDTO = this.userService.getUserDataByToken(token);
         return ResponseEntity.ok(userDTO);
     }
-    @PutMapping("/profile")
-    public ResponseEntity<Boolean> addPhotoUser(@RequestHeader("Authorization") String token,@RequestParam String photo_url){
-        return ResponseEntity.ok(this.userService.addPhotoUserByToken(token,photo_url));
-    }
-    @PutMapping("/profileDetails")
-    public ResponseEntity<Boolean> editNameLastname(@RequestParam Long idUser,@RequestParam String names,@RequestParam String lastNames){
-        return ResponseEntity.ok(this.userService.editNameLastname(idUser,names,lastNames));
-    }
 
     @Autowired
     public void setUserService(IUserService userService) {
