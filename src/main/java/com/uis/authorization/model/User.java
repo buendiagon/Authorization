@@ -1,6 +1,5 @@
 package com.uis.authorization.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,38 +13,38 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(schema = "public", name = "USERS")
+@Table(schema = "campuslink", name = "user")
 public class User implements Serializable {
     private static final long serialVersionUID = -1424432944414355371L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "USERNAME", nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "PHONE", nullable = false)
+    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "NAMES", nullable = false)
+    @Column(name = "names", nullable = false)
     private String names;
 
-    @Column(name = "LAST_NAMES", nullable = false)
+    @Column(name = "lastnames", nullable = false)
     private String lastNames;
 
-    @Column(name = "CREATED")
+    @Column(name = "created")
     @Temporal(TemporalType.DATE)
     private Date created = new Date();
 
-    @Column(name = "UPDATED")
+    @Column(name = "updated")
     @Temporal(TemporalType.DATE)
     private Date updated = new Date();
 

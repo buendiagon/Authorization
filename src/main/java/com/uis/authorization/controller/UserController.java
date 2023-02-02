@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * @author Daniel Adrian Gonzalez Buendia
  */
@@ -30,16 +28,6 @@ public class UserController {
     @PutMapping("/profileDetails")
     public ResponseEntity<Boolean> editNameLastname(@RequestParam Long idUser,@RequestParam String names,@RequestParam String lastNames){
         return ResponseEntity.ok(this.userService.editNameLastname(idUser,names,lastNames));
-    }
-
-    @GetMapping("/friends")
-    public ResponseEntity<List<UserDTO>> getFriends(@RequestHeader("Authorization") String token) {
-        return ResponseEntity.ok(this.userService.getFriendsByToken(token));
-    }
-
-    @PostMapping("/friend")
-    public ResponseEntity<UserDTO> addFriend(@RequestHeader("Authorization") String token, @RequestParam String username) {
-        return ResponseEntity.ok(this.userService.addFriend(token, username));
     }
 
     @Autowired
