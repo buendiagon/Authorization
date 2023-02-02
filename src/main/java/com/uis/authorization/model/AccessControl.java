@@ -14,22 +14,22 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(schema = "public", name = "ACCESS_CONTROL")
+@Table(schema = "campuslink", name = "access_control")
 public class AccessControl implements Serializable {
     private static final long serialVersionUID = -4358981442375745702L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "ID_USER", nullable = false)
+    @Column(name = "id_user", nullable = false)
     private Long idUser;
 
-    @Column(name = "TOKEN", nullable = false)
+    @Column(name = "token", nullable = false)
     private String token;
 
-    @Column(name = "LAST_USE", nullable = false)
+    @Column(name = "last_use", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date lastAccess;
 }
