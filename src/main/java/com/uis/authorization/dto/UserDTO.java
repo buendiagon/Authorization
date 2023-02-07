@@ -26,6 +26,5 @@ public class UserDTO implements Serializable {
     @NotNull
     private String lastNames;
     private String userPhotoUrl;
-    @NotNull
     private Long score;
 }
