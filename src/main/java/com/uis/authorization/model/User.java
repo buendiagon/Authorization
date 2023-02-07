@@ -50,4 +50,7 @@ public class User implements Serializable {
 
     @Column(name="photo_user")
     private String userPhotoUrl;
+
+    @Column(name="score")
+    private Long score;
 }
