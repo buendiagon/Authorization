@@ -25,6 +25,6 @@ public class UserDTO implements Serializable {
     private String names;
     @NotNull
     private String lastNames;
-    private String userPhotoUrl;
+    private String userPhotoUrl="https://cdn-icons-png.flaticon.com/128/3899/3899618.png";
     private Long score;
 }

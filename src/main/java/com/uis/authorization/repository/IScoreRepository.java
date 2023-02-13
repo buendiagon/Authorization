@@ -17,4 +17,7 @@ public interface IScoreRepository extends JpaRepository<Score,Long> {
 
     @Query("FROM Score s WHERE s.id_user=:i")
     List<Score> getScoreByIdUser(Long i);
+
+    @Query("FROM Score s where s.id_user=:id_user and s.id_input=:id_input")
+    Score getScoreByIdUserAndInput(Long id_user,Long id_input);
 }
